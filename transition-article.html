@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<body>
+	
+	<!-- References panel element (JS CODE ASSOCIATED)-->
+	<span class="refs">
+		
+	<button class="collapsiblebutton">Livres pour aller plus loin sur le thème de la transition ...</button>
+	<div class="collapsiblepanel">
+		<center>
+		<figure><img src="img/book_demain_dion.jpg" height="150"/><figcaption><b>"Demain : un nouveau monde en marche"</b> <br/> Cyril Dion <br/> 2015 </figcaption></figure> <figure><img src="img/book_million_revolution_tranquilles_manier.jpg" height="150"/><figcaption><b>"Un million de révolutions tranquilles : comment les citoyens changent le monde"</b> <br/> Bénédicte Manier<br/>2012</figcaption></figure> <figure><img src="img/book_changent_le_monde_hopkins.jpg" height="150"/><figcaption><b>"Ils changent le monde ! : 1001 initiatives de transition écologique"</b> <br/> Rob Hopkins<br/>2014</figcaption></figure> <figure><img src="img/book_manuel_transition_hopkins.jpg" height="150"/><figcaption><b>"Manuel de transition"</b> <br/> Rob Hopkins<br/>2010</figcaption></figure>
+		</center>	
+	</div>
+	
+	<button class="collapsiblebutton">Films pour aller plus loin sur le thème de la transition ...</button>
+	<div class="collapsiblepanel">
+		<center>
+		<figure><img src="img/film_demain_dion_laurent.jpg" height="150"/><figcaption><b>"Demain"</b> <br/> Cyril Dion &amp; Mélanie Laurent<br/>2015</figcaption></figure> <figure><img src="img/film_qu_est_ce_qu_on_attend_robin.jpg" height="150"/><figcaption><b>"Qu'est-ce qu'on attend ?"</b> <br/> Marie-Monique Robin<br/>2016</figcaption></figure>		
+		</center>		
+	</div> <!-- End div collapsiblepanel-->
+
+	</span> <!-- End span refs-->
+
+</body>
+
+
+<!-- CSS code for collapsible / expandable references panel (can be put in a separate css file) -->
+<style>	
+	/* Figures parameters */
+	figure {
+		position: relative; 
+    	display: inline-block;
+		margin-right: 12px;
+		margin-left: 12px;
+	}
+	/* Legend draw on top of the figure, at the bottom */
+	figcaption {
+		display: none;		 /* caption is hidden by default */
+    	position: absolute;
+    	left: 0;
+    	bottom: 5px;
+    	right: 0;
+    	background-color: rgba(255,255,255,.80);
+	}
+	/* When figure is hover, the image become transparent */
+	figure:hover img {
+    	opacity: .7;
+	}
+	/* When the figure is hover, the caption is displayed */
+	figure:hover figcaption {
+		display: block;
+	}
+
+	/* Collapsible / expandable list panel for references */
+	div.collapsiblepanel {
+	    padding: 0 18px;
+	    background-color: #FFFFFF;
+	    max-height: 0;
+	    overflow: hidden;
+	    transition: max-height 0.2s ease-out;
+	}
+	/* Button to open and close the collapsible / expandable panel */
+	button.collapsiblebutton {
+	    background-color: #7BAA21;
+		border-radius: 8px;
+		border: 2px solid #FFFFFF;		
+	    padding: 18px;
+	    cursor: pointer;
+	    color: #FFFFFF;
+		font-size: 18px;
+	    width: 100%;
+	    text-align: left;
+	    outline: none;
+	    transition: 0.4s;
+	}
+	/* Add a background color to the button if it is clicked on or hover on */
+	button.collapsiblebutton.active, button.collapsiblebutton:hover {
+	    background-color: #006534;
+	}
+	/* Toggle color and sign of the button after click */	
+	button.collapsiblebutton:after { /* if the button is not already active */
+	    content: "+"; 
+		font-size: 18px;
+	    color: #FFFFFF;
+	    float: right;
+	    margin-left: 5px;
+	}
+	button.collapsiblebutton.active:after { /* if the button is already active */
+	    content: "-"; 
+	}
+	
+	/* Add a vertical spacer between the content of the article and the references part */
+	span.refs {
+		display: block;
+		padding-top: 50px;
+		
+	}
+</style>
+
+
+<!-- JS code for collapsible / expandable references panel (can be put in a separate js file) -->
+<script>
+	/* Link the html element to a js variable */
+	var collapsible_button = document.getElementsByClassName("collapsiblebutton");
+	var i;
+
+	/* For each button of this type */
+	for (i = 0; i < collapsible_button.length; i++) {
+	    collapsible_button[i].onclick = function(){ // Add a function when clicked
+	        this.classList.toggle("active"); // toggle "active" class parameter to change the visual of the button
+	        /* Toggle between hiding and showing the active panel */
+	        var collapsiblepanel = this.nextElementSibling; // Get the panel from the button 
+			if (collapsiblepanel.style.maxHeight) { // collapse
+				collapsiblepanel.style.maxHeight = null;
+			} else { // expand
+				collapsiblepanel.style.maxHeight = collapsiblepanel.scrollHeight + "px";
+			} 
+	    }
+	}
+</script>
+</html>
